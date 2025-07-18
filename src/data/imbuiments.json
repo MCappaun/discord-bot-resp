@@ -1,0 +1,421 @@
+[
+    {
+        "name": "Life Leech",
+        "descricao": "25% de recuperação de vida ao atacar",
+        "itens": [
+            "25x Vampire Teeth",
+            "15x Crab Claw",
+            "5x Soul Essence"
+        ],
+        "mob_item_1": [
+            "Vampire",
+            "Blood Frost",
+            "Sir Vampire"
+        ],
+        "mob_item_2": [
+            "Crab"
+        ],
+        "mob_item_3": [
+            "Black torturer",
+            "Ghost Skull",
+            "Night Mare",
+            "Frost Soul",
+            "Mutated Rat",
+            "Dark Reaper"
+        ]
+    },
+    {
+        "name": "Mana Leech",
+        "descricao": "8% de recuperação de mana ao atacar",
+        "itens": [
+            "25x Rope Belt",
+            "15x Spider Claws",
+            "5x Honey Comb"
+        ],
+        "mob_item_1": [
+            "Necromancer",
+            "Dark Monk",
+            "Minotaur Mage",
+            "Nomad",
+            "Orc Shaman"
+        ],
+        "mob_item_2": [
+            "Ice Spider",
+            "Powered Spider",
+            "Tarantula"
+        ],
+        "mob_item_3": [
+            "Wasp",
+            "Bear"
+        ]
+    },
+    {
+        "name": "Crit Boost",
+        "descricao": "Aumenta chance de crítico",
+        "itens": [
+            "20x Bear Paw",
+            "25x Worm Tooth",
+            "5x Soul Essence"
+        ],
+        "mob_item_1": [
+            "Bear"
+        ],
+        "mob_item_2": [
+            "Rotworm"
+        ],
+        "mob_item_3": [
+            "Black torturer",
+            "Ghost Skull",
+            "Night Mare",
+            "Frost Soul",
+            "Mutated Rat",
+            "Dark Reaper"
+        ]
+    },
+    {
+        "name": "Skill Distance",
+        "descricao": "Aumenta skill de distância em +4",
+        "itens": [
+            "25x Magnifying Glass",
+            "20x Tactical Leather",
+            "10x Metal Sleeve"
+        ],
+        "mob_item_1": [
+            "Black Assassin",
+            "Orc Shaman"
+        ],
+        "mob_item_2": [
+            "Goblin Rider",
+            "Goblin Archer",
+            "Minotaur Archer"
+        ],
+        "mob_item_3": [
+            "Cyclop"
+        ]
+    },
+    {
+        "name": "Skill Melee",
+        "descricao": "Aumenta skill de melee em +4",
+        "itens": [
+            "25x Minotaur Horn",
+            "25x Human Bone",
+            "5x War Crystal"
+        ],
+        "mob_item_1": [
+            "Minotaur Archer",
+            "Minotaur Mage",
+            "Minotaur"
+        ],
+        "mob_item_2": [
+            "Demon Skeleton",
+            "Ice Skeleton",
+            "Skeleton"
+        ],
+        "mob_item_3": [
+            "Glacier Warrior"
+        ]
+    },
+    {
+        "name": "Skill Magic",
+        "descricao": "Aumenta skill de magic level em +4",
+        "itens": [
+            "25x Yeti Scalp",
+            "15x Crow Feather",
+            "15x Medusa Hair"
+        ],
+        "mob_item_1": [
+            "Yeti"
+        ],
+        "mob_item_2": [
+            "Corvo"
+        ],
+        "mob_item_3": [
+            "Medusa"
+        ]
+    },
+    {
+        "name": "Skill Defense",
+        "descricao": "Aumenta skill de defesa em +4",
+        "itens": [
+            "20x Scarab Clamp",
+            "25x War League",
+            "25x Carapace Skin"
+        ],
+        "mob_item_1": [
+            "Ancient Scarab"
+        ],
+        "mob_item_2": [
+            "Dwarf Armored",
+            "Dwarf"
+        ],
+        "mob_item_3": [
+            "Cockle",
+            "Giant Cockle",
+            "Troll"
+        ]
+    },
+    {
+        "name": "Paralyze",
+        "descricao": "Aumenta chance de não levar paralizer de inimigos em 50%",
+        "itens": [
+            "20x Minotaur Paw",
+            "15x Crystal Tortoiseshell",
+            "5x Candle Rest"
+        ],
+        "mob_item_1": [
+            "Minotaur Archer",
+            "Minotaur Mage",
+            "Minotaur"
+        ],
+        "mob_item_2": [
+            "Crystal Turtle"
+        ],
+        "mob_item_3": [
+            "Candelabra"
+        ]
+    },
+    {
+        "name": "Speed",
+        "descricao": "Aumenta velocidade em 20",
+        "itens": [
+            "15x Possessed Crystal",
+            "25x Compass",
+            "20x Minotaur Leather"
+        ],
+        "mob_item_1": [
+            "Ghost Skull",
+            "Glacial Giant",
+            "Mummy",
+            "Rotting Mummy"
+        ],
+        "mob_item_2": [
+            "Cave Octopus"
+        ],
+        "mob_item_3": [
+            "Minotaur Archer",
+            "Minotaur Mage",
+            "Minotaur"
+        ]
+    },
+    {
+        "name": "Death Damage",
+        "descricao": "Aumenta o dano elemental de Death em 50%",
+        "itens": [
+            "25x Human Skull",
+            "20x Demon Skeleton Hand",
+            "5x Bear Scalp"
+        ],
+        "mob_item_1": [
+            "Demon Skeleton",
+            "Ice Skeleton",
+            "Skeleton"
+        ],
+        "mob_item_2": [
+            "Demon Skeleton"
+        ],
+        "mob_item_3": [
+            "Bear"
+        ]
+    },
+    {
+        "name": "Energy Damage",
+        "descricao": "Aumenta o dano elemental de Energy em 50%",
+        "itens": [
+            "25x Energy Crystal",
+            "5x Piece Of Power Cloth",
+            "5x Power Clamp"
+        ],
+        "mob_item_1": [
+            "Powered Demon",
+            "Storm Dragon",
+            "Behebull"
+        ],
+        "mob_item_2": [
+            "Energy Wizard"
+        ],
+        "mob_item_3": [
+            "Powered Slime"
+        ]
+    },
+    {
+        "name": "Earth Damage",
+        "descricao": "Aumenta o dano elemental de Earth em 50%",
+        "itens": [
+            "25x Earth Crystal",
+            "20x Piece Of Poison Cloth",
+            "5x Poisonous Slime"
+        ],
+        "mob_item_1": [
+            "+ 98 Mobs, consultar Wiki"
+        ],
+        "mob_item_2": [
+            "Zombie"
+        ],
+        "mob_item_3": [
+            "King Slime",
+            "Mutated Slime",
+            "Slime"
+        ]
+    },
+    {
+        "name": "Ice Damage",
+        "descricao": "Aumenta o dano elemental de Ice em 50%",
+        "itens": [
+            "25x Ice Crystal",
+            "20x Piece Of Ice Cloth",
+            "5x Stone Golem Heart"
+        ],
+        "mob_item_1": [
+            "Glacial Giant",
+            "Troll Forst"
+        ],
+        "mob_item_2": [
+            "The Ice Witcher"
+        ],
+        "mob_item_3": [
+            "Ice Stone Golem",
+            "Stone Golem"
+        ]
+    },
+    {
+        "name": "Fire Damage",
+        "descricao": "Aumenta o dano elemental de Fire em 50%",
+        "itens": [
+            "25x Fire Crystal",
+            "20x Piece Of Fire Cloth",
+            "5x Flaming Heart"
+        ],
+        "mob_item_1": [
+            "Troll Swamp",
+            "Stone Refine"
+        ],
+        "mob_item_2": [
+            "The Witcher"
+        ],
+        "mob_item_3": [
+            "Dragon Lord"
+        ]
+    },
+    {
+        "name": "Energy Protection",
+        "descricao": "Reduz o dano de Energy em 15%",
+        "itens": [
+            "20x Dragon Storm Scale",
+            "15x Thunder Saberz Head",
+            "10x Djinn Talisman"
+        ],
+        "mob_item_1": [
+            "Storm Dragon"
+        ],
+        "mob_item_2": [
+            "Saberz",
+            "Plague Saberz",
+            "Thunder Saberz"
+        ],
+        "mob_item_3": [
+            "Blue Djinn",
+            "Green Djinn"
+        ]
+    },
+    {
+        "name": "Holy Protection",
+        "descricao": "Reduz o dano de Holy em 15%",
+        "itens": [
+            "25x Cult Cloak",
+            "25x Sacred Mummy Cloth",
+            "20x Hideosface Scalp"
+        ],
+        "mob_item_1": [
+            "Dark Monk",
+            "Monk"
+        ],
+        "mob_item_2": [
+            "Mummy",
+            "Rotting Mummy"
+        ],
+        "mob_item_3": [
+            "Hideosface"
+        ]
+    },
+    {
+        "name": "Fire Protection",
+        "descricao": "Reduz o dano de Fire em 15%",
+        "itens": [
+            "20x Dragon Scale",
+            "10x Blazing Bone",
+            "5x Sulfur Of Hell"
+        ],
+        "mob_item_1": [
+            "Albine Dragon",
+            "Baby Dragon",
+            "Dragon",
+            "Frost Baby Dragon"
+        ],
+        "mob_item_2": [
+            "Até o momento nenhum mob tem esse item"
+        ],
+        "mob_item_3": [
+            "Demon",
+            "Candelabra"
+        ]
+    },
+    {
+        "name": "Death Protection",
+        "descricao": "Reduz o dano de Death em 15%",
+        "itens": [
+            "20x Dead Ghost Skull",
+            "15x Cloth Of Death",
+            "10x Mystical Hourglass"
+        ],
+        "mob_item_1": [
+            "Ghost Skull"
+        ],
+        "mob_item_2": [
+            "Soul Devourer"
+        ],
+        "mob_item_3": [
+            "Necromancer",
+            "Nomad"
+        ]
+    },
+    {
+        "name": "Ice Protection",
+        "descricao": "Reduz o dano de Ice em 15%",
+        "itens": [
+            "25x Dragon Frost Scale",
+            "15x Winter Wolf Fur",
+            "10x Snowbeast Leg Skin"
+        ],
+        "mob_item_1": [
+            "Frost Dragon"
+        ],
+        "mob_item_2": [
+            "Winter Wolf"
+        ],
+        "mob_item_3": [
+            "Snowbeast"
+        ]
+    },
+    {
+        "name": "Earth Protection",
+        "descricao": "Reduz o dano de Earth em 15%",
+        "itens": [
+            "25x Hydra Scale",
+            "20x Snake Skin",
+            "10x Scorpion Pincer"
+        ],
+        "mob_item_1": [
+            "Hydra"
+        ],
+        "mob_item_2": [
+            "Desert Snake",
+            "Earth Snake",
+            "Serpent Spawn"
+        ],
+        "mob_item_3": [
+            "Ancient Scorpion",
+            "Desert Scorpion",
+            "Imperator Scorpion"
+        ]
+    }
+]
