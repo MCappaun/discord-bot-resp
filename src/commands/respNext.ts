@@ -26,7 +26,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   if (!RESPAWNS[numero]) {
     return interaction.reply({
       content: 'Numero de respawn invalido.',
-      ephemeral: true,
+      flags: 64,
     });
   }
 
@@ -34,7 +34,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   if (!rawRespawn) {
     return interaction.reply({
       content: `Respawn está livre, use o comando \`/resp ${numero}\`.`,
-      ephemeral: true,
+      flags: 64,
     });
   }
 
@@ -51,7 +51,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     await updateClaimedListMessage();
     return interaction.reply({
       content: `Você foi adicionado na fila para o respawn número ${numero}.`,
-      ephemeral: true,
+      flags: 64,
     });
   }
 
@@ -67,7 +67,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     await interaction.reply({
       content: `🎯 Está na hora do seu claimed do respawn número ${numero}. Deseja continuar?`,
       components: [row],
-      ephemeral: true,
+      flags: 64,
     });
 
     const collector = interaction.channel?.createMessageComponentCollector({
@@ -77,7 +77,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
     collector?.on('collect', async btn => {
       if (btn.user.id !== userId) {
-        return btn.reply({ content: '❌ Você não tem permissão para interagir com este botão.', ephemeral: true });
+        return btn.reply({ content: '❌ Você não tem permissão para interagir com este botão.', flags: 64 });
       }
 
       if (btn.customId === 'aceitar') {
@@ -149,7 +149,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   } else {
     return interaction.reply({
       content: `A fila para o respawn número ${numero} é: ${respawn.queue.map(item => `<@${item.userId}>`).join(', ')}`,
-      ephemeral: true,
+      flags: 64,
     });
   }
 }
