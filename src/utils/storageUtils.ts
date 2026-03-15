@@ -1,12 +1,15 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { ClaimedRespawn } from '../data/claimedList.js';
 
 // Obter o diretório correto
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const filePath = path.join(__dirname, '../data/claimedList.json');
 
 export function saveClaimedList(list: ClaimedRespawn[]) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, JSON.stringify(list, null, 2), 'utf-8');
 }
 
