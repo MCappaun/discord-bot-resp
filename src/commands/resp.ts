@@ -14,13 +14,16 @@ export const data = new SlashCommandBuilder()
             .setRequired(true));
 
 export async function execute(interaction: ChatInputCommandInteraction) {
+    if (!interaction.deferred && !interaction.replied) {
+        await interaction.deferReply();
+    }
     console.log('✅ Comando /resp iniciado');
 
     const numero = interaction.options.getInteger('numero', true);
     const userId = interaction.user.id;
 
     if (!RESPAWNS[numero]) {
-        return interaction.reply({ content: 'Numero de respawn invalido.', ephemeral: true });
+        return interaction.editReply({ content: 'Numero de respawn invalido.' });
     }
 
     console.log(`➡️ Respawn número: ${numero} | UserID: ${userId}`);
@@ -29,9 +32,9 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     const existing = claimedList.find(r => r.respawnNumber === numero);
     if (existing) {
         if (existing.userId === userId) {
-            return interaction.reply({ content: 'Você já tem esse respawn.', ephemeral: true });
+            return interaction.editReply({ content: 'Você já tem esse respawn.' });
         } else {
-            return interaction.reply({ content: 'Respawn já ocupado.', ephemeral: true });
+            return interaction.editReply({ content: 'Respawn já ocupado.' });
         }
     }
 
@@ -49,5 +52,5 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         .setFooter({ text: `Respawn atribuído com sucesso!` });
 
     console.log('✅ Embed pronto, enviando...');
-    await interaction.reply({ embeds: [embed] });
+    await interaction.editReply({ embeds: [embed] });
 }
