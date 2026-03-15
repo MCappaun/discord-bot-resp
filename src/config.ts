@@ -1,1 +1,7 @@
-export const CLAIMED_LIST_CHANNEL_ID = '1344099311440629851';
+export const requireEnv = (key: string) => {
+  const value = process.env[key];
+  if (!value) {
+    throw new Error(`Missing required env var: ${key}`);
+  }
+  return value;
+};

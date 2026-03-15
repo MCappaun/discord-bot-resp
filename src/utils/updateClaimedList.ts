@@ -1,6 +1,7 @@
 import { EmbedBuilder, TextChannel } from 'discord.js';
 import { client } from '../index.js';
 import claimedList from '../data/claimedList.js';
+import { requireEnv } from '../config.js';
 
 export async function updateClaimedListMessage() {
   const embed = new EmbedBuilder()
@@ -28,7 +29,8 @@ export async function updateClaimedListMessage() {
     });
   }
 
-  const channel = await client.channels.fetch('1344099311440629851');
+  const channelId = requireEnv('CLAIMED_LIST_CHANNEL_ID');
+  const channel = await client.channels.fetch(channelId);
   if (!channel?.isTextBased()) return;
 
   const messages = await (channel as TextChannel).messages.fetch();

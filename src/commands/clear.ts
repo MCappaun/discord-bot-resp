@@ -10,6 +10,7 @@ import {
   ComponentType,
   ButtonInteraction,
 } from 'discord.js';
+import { requireEnv } from '../config.js';
 
 export const data = new SlashCommandBuilder()
   .setName('clear')
@@ -29,10 +30,9 @@ export const data = new SlashCommandBuilder()
   );
 
 export async function execute(interaction: ChatInputCommandInteraction) {
-  const ROLE_ID = '1292863335951237127';
-
   const member = await interaction.guild?.members.fetch(interaction.user.id);
-  if (!member?.roles.cache.has(ROLE_ID)) {
+  const roleId = requireEnv('CLEAR_ALLOWED_ROLE_ID');
+  if (!member?.roles.cache.has(roleId)) {
     return interaction.reply({
       content: '❌ Você não tem permissão para usar este comando.',
       ephemeral: true,

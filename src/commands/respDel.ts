@@ -2,6 +2,7 @@ import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
 import { updateClaimedListMessage } from '../utils/updateClaimedList.js';
 import claimedList from '../data/claimedList.js';
 import { RespManager } from '../utils/respManager.js';
+import { requireEnv } from '../config.js';
 
 export const data = new SlashCommandBuilder()
   .setName('respdel')
@@ -18,7 +19,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   const numero = interaction.options.getInteger('numero', true);
   const userId = interaction.user.id;
 
-  const respawn = claimedList.find(resp => resp.respawnNumber === numero && (resp.userId === userId || resp.userId === "297159646345560065"));
+  const adminUserId = requireEnv('ADMIN_USER_ID');
+  const respawn = claimedList.find(resp => resp.respawnNumber === numero && (resp.userId === userId || resp.userId === adminUserId));
 
   if (!respawn) {
     return interaction.reply({
