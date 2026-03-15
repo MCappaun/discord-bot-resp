@@ -4,8 +4,8 @@
   "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node --esm src/index.ts",
-    "register": "ts-node --esm src/register-commands.ts",
+    "dev": "node --loader ts-node/esm src/index.ts",
+    "register": "node --loader ts-node/esm src/register-commands.ts",
     "build": "tsc -p tsconfig.json && node scripts/copy-static.js",
     "start": "node dist/index.js"
   },
