@@ -2,10 +2,10 @@ import claimedList, { ClaimedRespawn } from '../data/claimedList.js';
 import { RESPAWNS } from '../data/respawns.js';
 import { saveClaimedList } from './storageUtils.js';
 
-export function addRespawnToList(userId: string, respawnNumber: number, nickname: string, channelId?: string) {
+export function addRespawnToList(userId: string, respawnNumber: number, nickname: string, hours: number, channelId?: string) {
     const respawnName = RESPAWNS[respawnNumber] || 'Desconhecido';
     const expiration = new Date();
-    expiration.setHours(expiration.getHours() + 2);
+    expiration.setHours(expiration.getHours() + hours);
   
     const newRespawn: ClaimedRespawn = {
       userId,

@@ -30,7 +30,8 @@ export class RespManager {
 
           if (Array.isArray(resp.queue) && resp.queue.length > 0) {
             const next = resp.queue[0];
-            addRespawnToList(next.userId, numero, next.userId, next.channelId);
+            const horas = next.hours === 1 || next.hours === 2 ? next.hours : 2;
+            addRespawnToList(next.userId, numero, next.userId, horas, next.channelId);
 
             const nextEmbed = new EmbedBuilder()
               .setColor('#1976D2')
@@ -55,7 +56,8 @@ export class RespManager {
       for (const resp of respawns) {
         if (Array.isArray(resp.queue) && resp.queue.length > 0) {
           const next = resp.queue[0];
-          addRespawnToList(next.userId, numero, next.userId, next.channelId);
+          const horas = next.hours === 1 || next.hours === 2 ? next.hours : 2;
+          addRespawnToList(next.userId, numero, next.userId, horas, next.channelId);
 
           const nextEmbed = new EmbedBuilder()
             .setColor('#1976D2')

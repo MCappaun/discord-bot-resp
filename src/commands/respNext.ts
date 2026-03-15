@@ -19,7 +19,15 @@ export const data = new SlashCommandBuilder()
     option.setName('numero')
       .setDescription('Numero do respawn')
       .setRequired(true)
-  );
+  )
+  .addIntegerOption(option =>
+    option.setName('tempo')
+      .setDescription('Tempo do claimed (1 ou 2 horas)')
+      .setRequired(true)
+      .addChoices(
+        { name: '1 hora', value: 1 },
+        { name: '2 horas', value: 2 }
+      ));
 
 export async function execute(interaction: ChatInputCommandInteraction) {
   if (!interaction.deferred && !interaction.replied) {
@@ -36,6 +44,15 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   console.log('✅ Comando /respnext iniciado');
   const numero = interaction.options.getInteger('numero', true);
   const userId = interaction.user.id;
+  const horas = interaction.options.getInteger('tempo', true);
+
+  if (horas !== 1 && horas !== 2) {
+    const embed = new EmbedBuilder()
+      .setColor('#D32F2F')
+      .setTitle('Tempo invalido')
+      .setDescription('Use 1 ou 2.');
+    return interaction.editReply({ embeds: [embed], components: [] });
+  }
 
   console.log(`➡️ Respawn número: ${numero} | UserID: ${userId}`);
   console.log('🧪 claimedList:', claimedList);
@@ -73,7 +90,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   if (respawn.queue.length === 0) {
     console.log('✅ Fila vazia, adicionando usuario ao next');
-    respawn.queue.push({ userId, channelId: interaction.channelId });
+    respawn.queue.push({ userId, channelId: interaction.channelId, hours: horas });
     await updateClaimedListMessage();
     const embed = new EmbedBuilder()
       .setColor('#388E3C')

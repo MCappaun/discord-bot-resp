@@ -24,9 +24,13 @@ export function loadClaimedList(): ClaimedRespawn[] {
       queue: Array.isArray(item.queue)
         ? item.queue.map((entry: any) => {
             if (typeof entry === 'string') {
-              return { userId: entry, channelId: item.channelId || '' };
+              return { userId: entry, channelId: item.channelId || '', hours: 2 };
             }
-            return { userId: entry.userId, channelId: entry.channelId || item.channelId || '' };
+            return {
+              userId: entry.userId,
+              channelId: entry.channelId || item.channelId || '',
+              hours: entry.hours === 1 || entry.hours === 2 ? entry.hours : 2,
+            };
           })
         : [],
     }));
