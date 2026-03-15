@@ -5,6 +5,7 @@ import {
   ButtonBuilder,
   ButtonStyle,
   ComponentType,
+  MessageFlags,
 } from 'discord.js';
 import claimedList from '../data/claimedList.js';
 import { updateClaimedListMessage } from '../utils/updateClaimedList.js';
@@ -21,7 +22,7 @@ export const data = new SlashCommandBuilder()
 
 export async function execute(interaction: ChatInputCommandInteraction) {
   if (!interaction.deferred && !interaction.replied) {
-    await interaction.deferReply({ flags: 64 });
+    await interaction.deferReply({ flags: MessageFlags.Ephemeral });
   }
   const numero = interaction.options.getInteger('numero', true);
   const userId = interaction.user.id;
