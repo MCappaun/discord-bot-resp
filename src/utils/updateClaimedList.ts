@@ -3,6 +3,8 @@ import { client } from '../index.js';
 import claimedList from '../data/claimedList.js';
 import { requireEnv } from '../config.js';
 
+let claimedListMessageId: string | null = null;
+
 export async function updateClaimedListMessage() {
   const embed = new EmbedBuilder()
     .setTitle('Lista de Respawns Ativos')
@@ -37,13 +39,27 @@ export async function updateClaimedListMessage() {
   const channel = await client.channels.fetch(channelId);
   if (!channel?.isTextBased()) return;
 
-  const messages = await (channel as TextChannel).messages.fetch();
-  const claimedListMessage = messages.find(msg => msg.author.id === client.user?.id);
+  let claimedListMessage = null;
+  if (claimedListMessageId) {
+    try {
+      claimedListMessage = await (channel as TextChannel).messages.fetch(claimedListMessageId);
+    } catch {
+      claimedListMessage = null;
+      claimedListMessageId = null;
+    }
+  }
+
+  if (!claimedListMessage) {
+    const messages = await (channel as TextChannel).messages.fetch({ limit: 50 });
+    claimedListMessage = messages.find(msg => msg.author.id === client.user?.id) ?? null;
+  }
 
   if (claimedListMessage) {
     await claimedListMessage.edit({ embeds: [embed] });
+    claimedListMessageId = claimedListMessage.id;
   } else {
-    await (channel as TextChannel).send({ embeds: [embed] });
+    const sent = await (channel as TextChannel).send({ embeds: [embed] });
+    claimedListMessageId = sent.id;
   }
 }
 
