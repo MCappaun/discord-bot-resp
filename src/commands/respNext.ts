@@ -20,11 +20,14 @@ export const data = new SlashCommandBuilder()
   );
 
 export async function execute(interaction: ChatInputCommandInteraction) {
+  if (!interaction.deferred && !interaction.replied) {
+    await interaction.deferReply({ flags: 64 });
+  }
   const numero = interaction.options.getInteger('numero', true);
   const userId = interaction.user.id;
 
   if (!RESPAWNS[numero]) {
-    return interaction.reply({
+    return interaction.editReply({
       content: 'Numero de respawn invalido.',
       flags: 64,
     });
@@ -32,7 +35,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   const rawRespawn = claimedList.find(resp => resp.respawnNumber === numero);
   if (!rawRespawn) {
-    return interaction.reply({
+    return interaction.editReply({
       content: `Respawn está livre, use o comando \`/resp ${numero}\`.`,
       flags: 64,
     });
@@ -49,7 +52,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   if (respawn.queue.length === 0) {
     respawn.queue.push({ userId, channelId: interaction.channelId });
     await updateClaimedListMessage();
-    return interaction.reply({
+    return interaction.editReply({
       content: `Você foi adicionado na fila para o respawn número ${numero}.`,
       flags: 64,
     });
@@ -64,7 +67,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       new ButtonBuilder().setCustomId('recusar').setLabel('❌ Não').setStyle(ButtonStyle.Danger)
     );
 
-    await interaction.reply({
+    await interaction.editReply({
       content: `🎯 Está na hora do seu claimed do respawn número ${numero}. Deseja continuar?`,
       components: [row],
       flags: 64,
@@ -147,7 +150,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       }
     });
   } else {
-    return interaction.reply({
+    return interaction.editReply({
       content: `A fila para o respawn número ${numero} é: ${respawn.queue.map(item => `<@${item.userId}>`).join(', ')}`,
       flags: 64,
     });
