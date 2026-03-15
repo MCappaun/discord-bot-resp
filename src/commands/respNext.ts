@@ -8,6 +8,7 @@ import {
 } from 'discord.js';
 import claimedList from '../data/claimedList.js';
 import { updateClaimedListMessage } from '../utils/updateClaimedList.js';
+import { RESPAWNS } from '../data/respawns.js';
 
 export const data = new SlashCommandBuilder()
   .setName('respnext')
@@ -21,6 +22,13 @@ export const data = new SlashCommandBuilder()
 export async function execute(interaction: ChatInputCommandInteraction) {
   const numero = interaction.options.getInteger('numero', true);
   const userId = interaction.user.id;
+
+  if (!RESPAWNS[numero]) {
+    return interaction.reply({
+      content: 'Numero de respawn invalido.',
+      ephemeral: true,
+    });
+  }
 
   const rawRespawn = claimedList.find(resp => resp.respawnNumber === numero);
   if (!rawRespawn) {

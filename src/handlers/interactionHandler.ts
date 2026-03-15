@@ -1,6 +1,7 @@
 import * as resp from '../commands/resp.js';
 import * as respDel from '../commands/respDel.js';
 import * as respNext from '../commands/respNext.js';
+import * as respDelNext from '../commands/respDelNext.js';
 import * as imbuiment from '../commands/imbuiment.js';
 import * as clear from '../commands/clear.js';
 
@@ -8,6 +9,7 @@ const commands: Record<string, any> = {
     resp,
     respdel: respDel,
     respnext: respNext,
+    respdelnext: respDelNext,
     imbuiment: imbuiment,
     clear: clear
   };

@@ -1,9 +1,9 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import { RESPAWNS } from '../data/respawns.js';
 import { addRespawnToList } from '../utils/claimedListUtils.js';
 import { updateClaimedListMessage } from '../utils/updateClaimedList.js';
 import { getDisplayName } from '../utils/getDisplayName.js';
 import claimedList from '../data/claimedList.js';
+import { RESPAWNS } from '../data/respawns.js';
 
 export const data = new SlashCommandBuilder()
     .setName('resp')
@@ -18,6 +18,10 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
     const numero = interaction.options.getInteger('numero', true);
     const userId = interaction.user.id;
+
+    if (!RESPAWNS[numero]) {
+        return interaction.reply({ content: 'Numero de respawn invalido.', ephemeral: true });
+    }
 
     console.log(`➡️ Respawn número: ${numero} | UserID: ${userId}`);
     console.log('🧪 claimedList:', claimedList);
@@ -37,7 +41,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     addRespawnToList(userId, numero, nickname);
     await updateClaimedListMessage();
 
-    const respawnName = RESPAWNS[numero] || 'Desconhecido';
+    const respawnName = RESPAWNS[numero];
     const embed = new EmbedBuilder()
         .setColor('#0E7A0D')
         .setTitle(`Resp ${numero} : ${respawnName}`)

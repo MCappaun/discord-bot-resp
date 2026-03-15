@@ -3,6 +3,7 @@ import { updateClaimedListMessage } from '../utils/updateClaimedList.js';
 import claimedList from '../data/claimedList.js';
 import { RespManager } from '../utils/respManager.js';
 import { requireEnv } from '../config.js';
+import { RESPAWNS } from '../data/respawns.js';
 
 export const data = new SlashCommandBuilder()
   .setName('respdel')
@@ -18,6 +19,13 @@ export const data = new SlashCommandBuilder()
 export async function execute(interaction: ChatInputCommandInteraction) {
   const numero = interaction.options.getInteger('numero', true);
   const userId = interaction.user.id;
+
+  if (!RESPAWNS[numero]) {
+    return interaction.reply({
+      content: 'Numero de respawn invalido.',
+      flags: 64,
+    });
+  }
 
   const adminUserId = requireEnv('ADMIN_USER_ID');
   const respawn = claimedList.find(resp => resp.respawnNumber === numero && (resp.userId === userId || resp.userId === adminUserId));
