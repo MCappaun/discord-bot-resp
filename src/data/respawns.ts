@@ -1,4 +1,4 @@
-export const RESPAWNS = {
+export const RESPAWNS: Record<number, string> = {
     1: 'Vampire',
     2: 'Minotaur',
     3: 'Orcs',
