@@ -7,6 +7,7 @@ import {
     EmbedBuilder,
     ComponentType,
     ButtonInteraction,
+    MessageFlags,
 } from 'discord.js';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -44,7 +45,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     const reply = await interaction.reply({
         embeds: [embedInicial],
         components: rows,
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
     });
 
     console.log('🧪 Embed criado');

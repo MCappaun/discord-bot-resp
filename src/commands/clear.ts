@@ -9,6 +9,7 @@ import {
   ButtonStyle,
   ComponentType,
   ButtonInteraction,
+  MessageFlags,
 } from 'discord.js';
 import { requireEnv } from '../config.js';
 
@@ -35,7 +36,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   if (!member?.roles.cache.has(roleId)) {
     return interaction.reply({
       content: '❌ Você não tem permissão para usar este comando.',
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   }
 
@@ -46,12 +47,12 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     console.log('🧪 Clear iniciado');
 
   if (!interaction.guild || !canal || canal.type !== ChannelType.GuildText) {
-    return interaction.reply({ content: '❌ Canal inválido ou não é de texto.', ephemeral: true });
+    return interaction.reply({ content: '❌ Canal inválido ou não é de texto.', flags: MessageFlags.Ephemeral });
   }
 
   const membroBot = interaction.guild.members.me;
   if (!membroBot?.permissionsIn(canal).has(PermissionsBitField.Flags.ManageMessages)) {
-    return interaction.reply({ content: '❌ Não tenho permissão para apagar mensagens nesse canal.', ephemeral: true });
+    return interaction.reply({ content: '❌ Não tenho permissão para apagar mensagens nesse canal.', flags: MessageFlags.Ephemeral });
   }
 
   const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
@@ -62,7 +63,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   await interaction.reply({
     content: `Tem certeza que deseja apagar **${quantidade} mensagens** do canal ${canal.toString()}?`,
     components: [row],
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 
   const collector = interaction.channel?.createMessageComponentCollector({
@@ -72,7 +73,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   collector?.on('collect', async (btn: ButtonInteraction) => {
     if (btn.user.id !== interaction.user.id) {
-      return btn.reply({ content: '❌ Apenas quem executou o comando pode confirmar.', ephemeral: true });
+      return btn.reply({ content: '❌ Apenas quem executou o comando pode confirmar.', flags: MessageFlags.Ephemeral });
     }
 
     if (btn.customId === 'confirmar') {

@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
+import { SlashCommandBuilder, ChatInputCommandInteraction, MessageFlags } from 'discord.js';
 import claimedList from '../data/claimedList.js';
 import { updateClaimedListMessage } from '../utils/updateClaimedList.js';
 import { RESPAWNS } from '../data/respawns.js';
@@ -17,14 +17,14 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   const userId = interaction.user.id;
 
   if (!RESPAWNS[numero]) {
-    return interaction.reply({ content: 'Numero de respawn invalido.', ephemeral: true });
+    return interaction.reply({ content: 'Numero de respawn invalido.', flags: MessageFlags.Ephemeral });
   }
 
   const respawn = claimedList.find(resp => resp.respawnNumber === numero);
   if (!respawn) {
     return interaction.reply({
       content: `Respawn ${numero} nao esta ativo no momento.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   }
 
@@ -36,7 +36,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   if (index === -1) {
     return interaction.reply({
       content: `Voce nao esta na fila do respawn ${numero}.`,
-      ephemeral: true,
+      flags: MessageFlags.Ephemeral,
     });
   }
 
@@ -45,6 +45,6 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   return interaction.reply({
     content: `Voce foi removido da fila do respawn ${numero}.`,
-    ephemeral: true,
+    flags: MessageFlags.Ephemeral,
   });
 }
