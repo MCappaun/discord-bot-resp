@@ -28,9 +28,18 @@ export async function handleInteraction(interaction: any) {
       await command.execute(interaction);
     } catch (error) {
       console.error(error);
-      await interaction.reply({
+      const payload = {
         content: 'Ocorreu um erro ao executar esse comando.',
-        ephemeral: true,
-      });
+        flags: 64,
+      };
+      try {
+        if (interaction.deferred || interaction.replied) {
+          await interaction.followUp(payload);
+        } else {
+          await interaction.reply(payload);
+        }
+      } catch (replyError) {
+        console.error('Falha ao enviar erro de interação:', replyError);
+      }
     }
 }
