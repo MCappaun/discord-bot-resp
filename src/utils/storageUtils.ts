@@ -18,6 +18,14 @@ export function loadClaimedList(): ClaimedRespawn[] {
     return parsed.map((item: any) => ({
       ...item,
       expiration: new Date(item.expiration),
+      queue: Array.isArray(item.queue)
+        ? item.queue.map((entry: any) => {
+            if (typeof entry === 'string') {
+              return { userId: entry, channelId: item.channelId || '' };
+            }
+            return { userId: entry.userId, channelId: entry.channelId || item.channelId || '' };
+          })
+        : [],
     }));
   } catch (err) {
     console.error('Erro ao carregar claimedList.json:', err);

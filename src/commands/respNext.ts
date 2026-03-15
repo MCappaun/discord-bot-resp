@@ -38,7 +38,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     });
   }
 
-  const respawn = rawRespawn as { respawnNumber: number; userId?: string; timestamp?: number; queue: string[] };
+  const respawn = rawRespawn as { respawnNumber: number; userId?: string; timestamp?: number; channelId?: string; queue: { userId: string; channelId: string }[] };
 
   // Garante que a fila exista
   if (!Array.isArray(respawn.queue)) {
@@ -47,7 +47,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   // Se a fila estiver vazia, adiciona o usuário
   if (respawn.queue.length === 0) {
-    respawn.queue.push(userId);
+    respawn.queue.push({ userId, channelId: interaction.channelId });
     await updateClaimedListMessage();
     return interaction.reply({
       content: `Você foi adicionado na fila para o respawn número ${numero}.`,
@@ -55,7 +55,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     });
   }
 
-  const proximoId = respawn.queue[0];
+  const proximoId = respawn.queue[0].userId;
 
   // Se chegou a vez do usuário
   if (proximoId === userId) {
@@ -83,6 +83,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       if (btn.customId === 'aceitar') {
         respawn.userId = userId;
         (respawn as any).timestamp = Date.now(); // marca como claimed
+        respawn.channelId = interaction.channelId;
         respawn.queue.shift();
         await updateClaimedListMessage();
 
@@ -106,7 +107,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         collector.stop();
 
         // Notifica o próximo
-        const nextUserId = respawn.queue[0];
+        const nextUserId = respawn.queue[0]?.userId;
         if (nextUserId) {
           const fakeInteraction = {
             user: { id: nextUserId },
@@ -131,7 +132,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
           components: [],
         });
 
-        const nextUserId = respawn.queue[0];
+        const nextUserId = respawn.queue[0]?.userId;
         if (nextUserId) {
           const fakeInteraction = {
             user: { id: nextUserId },
@@ -147,7 +148,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     });
   } else {
     return interaction.reply({
-      content: `A fila para o respawn número ${numero} é: ${respawn.queue.map(id => `<@${id}>`).join(', ')}`,
+      content: `A fila para o respawn número ${numero} é: ${respawn.queue.map(item => `<@${item.userId}>`).join(', ')}`,
       ephemeral: true,
     });
   }

@@ -22,9 +22,13 @@ export async function updateClaimedListMessage() {
 
       console.log("Update ClaimedList: ", expirationBrazilTime);
 
+      const nextList = Array.isArray(resp.queue) && resp.queue.length > 0
+        ? resp.queue.map(item => `<@${item.userId}>`).join(', ')
+        : 'Nenhum';
+
       embed.addFields({
         name: `Resp ${resp.respawnNumber}: ${resp.respawnName}`,
-        value: `**Usuário:** <@${resp.userId}>  ---  **Expira em:** ${expirationBrazilTime}\n Next: <@${resp.queue}>\n --------------------------------`,
+        value: `**Usuário:** <@${resp.userId}>  ---  **Expira em:** ${expirationBrazilTime}\n Next: ${nextList}\n --------------------------------`,
       });
     });
   }

@@ -32,14 +32,15 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     respawn.queue = [];
   }
 
-  if (!respawn.queue.includes(userId)) {
+  const index = respawn.queue.findIndex(item => item.userId === userId);
+  if (index === -1) {
     return interaction.reply({
       content: `Voce nao esta na fila do respawn ${numero}.`,
       ephemeral: true,
     });
   }
 
-  respawn.queue = respawn.queue.filter(id => id !== userId);
+  respawn.queue.splice(index, 1);
   await updateClaimedListMessage();
 
   return interaction.reply({

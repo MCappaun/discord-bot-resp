@@ -38,7 +38,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     const nickname = getDisplayName(interaction);
     console.log('✅ Respawn livre, adicionando novo');
 
-    addRespawnToList(userId, numero, nickname);
+    addRespawnToList(userId, numero, nickname, interaction.channelId);
     await updateClaimedListMessage();
 
     const respawnName = RESPAWNS[numero];

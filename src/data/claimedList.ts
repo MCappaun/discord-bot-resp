@@ -4,7 +4,8 @@ export interface ClaimedRespawn {
     respawnNumber: number;
     respawnName: string;
     expiration: Date;
-    queue?: string[];
+    channelId?: string;
+    queue?: { userId: string; channelId: string }[];
   }
   
   const claimedList: ClaimedRespawn[] = []; // ← só isso

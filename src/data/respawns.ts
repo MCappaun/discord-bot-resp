@@ -58,7 +58,7 @@ export const RESPAWNS: Record<number, string> = {
     57: 'Ancient Slime',
     58: 'Ancient Scarab',
     59: 'Ancient Scarab',
-    60: 'Scropion Imperador',
+    60: 'Scorpion Imperador',
     61: 'Mummia',
     62: 'Behebull',
     63: 'Behebull +1',
