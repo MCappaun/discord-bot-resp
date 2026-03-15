@@ -81,7 +81,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     userId?: string;
     timestamp?: number;
     channelId?: string;
-    queue: { userId: string; channelId: string }[];
+    queue: { userId: string; channelId: string; hours: number }[];
   };
 
   if (!Array.isArray(respawn.queue)) {
