@@ -24,14 +24,18 @@ export async function handleInteraction(interaction: any) {
 
     if (!command) return;
   
-    try {
-      await command.execute(interaction);
-    } catch (error) {
-      console.error(error);
-      const payload = {
-        content: 'Ocorreu um erro ao executar esse comando.',
-        flags: 64,
-      };
+  try {
+    await command.execute(interaction);
+  } catch (error) {
+    console.error(error);
+    if ((error as any)?.code === 10062) {
+      console.warn('Interacao expirada (Unknown interaction). Ignorando resposta.');
+      return;
+    }
+    const payload = {
+      content: 'Ocorreu um erro ao executar esse comando.',
+      flags: 64,
+    };
       try {
         if (interaction.deferred || interaction.replied) {
           await interaction.followUp(payload);

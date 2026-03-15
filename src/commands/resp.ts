@@ -15,7 +15,15 @@ export const data = new SlashCommandBuilder()
 
 export async function execute(interaction: ChatInputCommandInteraction) {
     if (!interaction.deferred && !interaction.replied) {
-        await interaction.deferReply();
+        try {
+            await interaction.deferReply();
+        } catch (error: any) {
+            if (error?.code === 10062) {
+                console.warn('Interacao expirada ao deferReply (/resp).');
+                return;
+            }
+            throw error;
+        }
     }
     console.log('✅ Comando /resp iniciado');
 
