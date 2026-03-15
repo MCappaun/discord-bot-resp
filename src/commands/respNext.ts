@@ -24,10 +24,15 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   if (!interaction.deferred && !interaction.replied) {
     await interaction.deferReply({ flags: MessageFlags.Ephemeral });
   }
+  console.log('✅ Comando /respnext iniciado');
   const numero = interaction.options.getInteger('numero', true);
   const userId = interaction.user.id;
 
+  console.log(`➡️ Respawn número: ${numero} | UserID: ${userId}`);
+  console.log('🧪 claimedList:', claimedList);
+
   if (!RESPAWNS[numero]) {
+    console.log('❌ Número de respawn inválido');
     return interaction.editReply({
       content: 'Numero de respawn invalido.',
       components: [],
@@ -36,6 +41,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   const rawRespawn = claimedList.find(resp => resp.respawnNumber === numero);
   if (!rawRespawn) {
+    console.log('ℹ️ Respawn livre, orientando usar /resp');
     return interaction.editReply({
       content: `Respawn está livre, use o comando \`/resp ${numero}\`.`,
       components: [],
@@ -51,6 +57,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   // Se a fila estiver vazia, adiciona o usuário
   if (respawn.queue.length === 0) {
+    console.log('✅ Fila vazia, adicionando usuário ao next');
     respawn.queue.push({ userId, channelId: interaction.channelId });
     await updateClaimedListMessage();
     return interaction.editReply({
@@ -60,9 +67,11 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   }
 
   const proximoId = respawn.queue[0].userId;
+  console.log(`🔎 Próximo da fila: ${proximoId}`);
 
   // Se chegou a vez do usuário
   if (proximoId === userId) {
+    console.log('✅ Usuário é o próximo da fila, solicitando confirmação');
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
       new ButtonBuilder().setCustomId('aceitar').setLabel('✅ Sim').setStyle(ButtonStyle.Success),
       new ButtonBuilder().setCustomId('recusar').setLabel('❌ Não').setStyle(ButtonStyle.Danger)
@@ -84,6 +93,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       }
 
       if (btn.customId === 'aceitar') {
+        console.log('✅ Usuário confirmou o claimed');
         respawn.userId = userId;
         (respawn as any).timestamp = Date.now(); // marca como claimed
         respawn.channelId = interaction.channelId;
@@ -99,6 +109,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       }
 
       if (btn.customId === 'recusar') {
+        console.log('❌ Usuário recusou o claimed');
         respawn.queue.shift();
         await updateClaimedListMessage();
 
@@ -150,6 +161,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       }
     });
   } else {
+    console.log('ℹ️ Usuário não é o próximo, mostrando fila');
     return interaction.editReply({
       content: `A fila para o respawn número ${numero} é: ${respawn.queue.map(item => `<@${item.userId}>`).join(', ')}`,
       components: [],
