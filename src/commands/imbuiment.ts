@@ -15,14 +15,14 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const imbuimentsPath = path.join(__dirname, '../data/imbuiments.json');
-const imbuiments = JSON.parse(fs.readFileSync(imbuimentsPath, 'utf8'));
+const imbuiments = JSON.parse(fs.readFileSync(imbuimentsPath, 'utf8')) as any[];
 
 export const data = new SlashCommandBuilder()
     .setName('imbuiment')
     .setDescription('Veja detalhes dos imbuiments disponíveis.');
 
 export async function execute(interaction: ChatInputCommandInteraction) {
-    const buttons = imbuiments.map((imb, i) =>
+    const buttons = imbuiments.map((imb: any, i: number) =>
         new ButtonBuilder()
             .setCustomId(`imb_${i}`)
             .setLabel(imb.name)
