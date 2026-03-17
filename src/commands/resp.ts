@@ -34,7 +34,6 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     }
   }
   console.log('✅ Comando /resp iniciado');
-
   const numero = interaction.options.getInteger('numero', true);
   const horas = interaction.options.getInteger('tempo', true);
   const userId = interaction.user.id;
@@ -47,8 +46,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     return interaction.editReply({ content: 'Numero de respawn invalido.' });
   }
 
-  console.log(`➡️ Respawn número: ${numero} | UserID: ${userId}`);
-  console.log('🧪 claimedList:', claimedList);
+  // log reduzido
 
   const existing = claimedList.find(r => r.respawnNumber === numero);
   if (existing) {
@@ -64,6 +62,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   addRespawnToList(userId, numero, nickname, horas, interaction.channelId);
   await updateClaimedListMessage();
+  console.log('✅ Adicionado ao claimedList');
 
   const respawnName = RESPAWNS[numero];
   const embed = new EmbedBuilder()
@@ -72,6 +71,10 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     .setDescription(`**Usuário:** ${nickname}`)
     .setFooter({ text: 'Respawn atribuído com sucesso!' });
 
+  const expiration = new Date();
+  expiration.setHours(expiration.getHours() + horas);
+  const nextCount = 0;
+  console.log(`🧾 CLAIMED | Player: ${nickname} | Resp: ${numero} | Tempo: ${horas}h | Expira: ${expiration.toISOString()} | Next: ${nextCount}`);
   console.log('✅ Embed pronto, enviando...');
   await interaction.editReply({ embeds: [embed] });
 }

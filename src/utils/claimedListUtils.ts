@@ -23,7 +23,6 @@ export function addRespawnToList(userId: string, respawnNumber: number, nickname
       return;
     }
 
-    console.log('✅ Adicionando ao claimedList:', newRespawn);
     claimedList.push(newRespawn);
     saveClaimedList(claimedList);
 }
