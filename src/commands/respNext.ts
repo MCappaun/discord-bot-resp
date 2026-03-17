@@ -46,7 +46,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   const userId = interaction.user.id;
   const horas = interaction.options.getInteger('tempo', true);
 
-  console.log(`RESPNEXT | Player: <@${userId}> | Resp: ${numero} | Tempo: ${horas ?? 'N/A'}h`);
+  // log reduzido
 
   if (horas !== 1 && horas !== 2) {
     const embed = new EmbedBuilder()
@@ -89,6 +89,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     respawn.queue.push({ userId, channelId: interaction.channelId, hours: horas });
     await updateClaimedListMessage();
     console.log(`NEXT | Player: <@${userId}> | Resp: ${numero} | Tempo: ${horas}h | Expira: ${new Date(Date.now() + horas * 3600000).toISOString()} | Next: ${respawn.queue.length}`);
+    console.log('✅ Adicionado ao next');
 
     const embed = new EmbedBuilder()
       .setColor('#388E3C')
@@ -128,6 +129,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         respawn.queue.shift();
         await updateClaimedListMessage();
         console.log(`CLAIMED | Player: <@${userId}> | Resp: ${numero} | Tempo: ${horas}h | Expira: ${new Date(Date.now() + horas * 3600000).toISOString()} | Next: ${respawn.queue.length}`);
+        console.log('✅ Adicionado ao claimedList');
 
         await btn.update({
           content: `✅ Voce confirmou e agora esta com o claimed ativo para o respawn numero ${numero}.`,
