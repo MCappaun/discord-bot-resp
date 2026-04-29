@@ -36,7 +36,7 @@ export const RESPAWNS: Record<number, string> = {
     35: 'Warrior Gladiator',
     36: 'Darkreaper Demon',
     37: 'Cursed Death Book',
-    38: 'Skeletons Infernaldemon / Elite Undead Warrior',
+    38: 'Infernal Demon / Elite Undead Warrior',
     39: 'Undead Medusa',
     40: 'Zone Fire',
     41: 'Ice Spider/Mutated Rat',
@@ -68,5 +68,7 @@ export const RESPAWNS: Record<number, string> = {
     67: 'Falcons',
     68: 'Djin',
     69: 'Djin +1',
-    70: 'Wasp'
+    70: 'Wasp',
+    71: 'Undead Frost Dragon',
+    72: 'Cursed Brain'
 };

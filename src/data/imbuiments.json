@@ -29,7 +29,7 @@
         "descricao": "8% de recuperação de mana ao atacar",
         "itens": [
             "25x Rope Belt",
-            "15x Spider Claws",
+            "25x Spider Claws",
             "5x Honey Comb"
         ],
         "mob_item_1": [
@@ -152,6 +152,28 @@
             "Cockle",
             "Giant Cockle",
             "Troll"
+        ]
+    },
+    {
+        "name": "Area Attack",
+        "descricao": "Ataque em area raio 3",
+        "itens": [
+            "25x Minotaur Horn",
+            "25x Worm Tooth",
+            "25x Spider Claws"
+        ],
+        "mob_item_1": [
+            "Minotaur",
+            "Minotaur Mage",
+            "Minotaur Archer"
+        ],
+        "mob_item_2": [
+            "Rotworm"
+        ],
+        "mob_item_3": [
+            "Powered Spider",
+            "Ice Spider",
+            "Tarantula"
         ]
     },
     {
