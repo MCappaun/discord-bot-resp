@@ -7,6 +7,11 @@ import { data as respDelNext } from './commands/respDelNext.js';
 import { data as imbuiment } from './commands/imbuiment.js';
 import { data as clear } from './commands/clear.js';
 import { requireEnv } from './config.js';
+import dns from 'node:dns';
+
+// Fix para Gateway Timeout (504) na Oracle Cloud
+dns.setDefaultResultOrder('ipv4first');
+
 
 
 const commands = [resp, respDel, respNext, respDelNext, imbuiment, clear];
